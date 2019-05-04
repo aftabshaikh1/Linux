@@ -1,0 +1,42 @@
+ ________________
+|  FIREWALLD     |
+|________________|
+
+apt install firewalld
+systemctl disable iptables.service
+
+firewall-cmd --state
+systemctl start firewalld.service
+
+firewall-cmd --get-default-zone
+firewall-cmd --get-active-zones
+firewall-cmd --get-zone-of-interface=ens33
+firewall-cmd --get-zones
+
+firewall-cmd --permanent --zone=public --remove-interface=ens33
+firewall-cmd --permanent --zone=external --add-interface=ens33
+systemctl restart firewalld.service
+firewall-cmd --get-active-zones
+firewall-cmd --set-default-zone=external
+
+firewall-cmd --list-all
+firewall-cmd --list-all --zone=default
+
+firewall-cmd --permanent --remove-service=ssh
+firewall-cmd --permanent --remove-service=ipp-client --zone=internal
+firewall-cmd --permanent --remove-service={dhcpv6-client,mdns,samba-client} --zone=internal
+firewall-cmd --permanent --add-source=10.1.1.0/24 --zone=internal
+firewall-cmd --permanent --add-port=443/tcp --zone=internal
+firewall-cmd --reload
+firewall-cmd --list-services --zone=internal
+firewall-cmd --list-ports --zone=internal
+
+firewall-cmd --panic-on
+firewall-cmd --panic-off
+firewall-cmd --query-panic
+
+
+
+
+
+

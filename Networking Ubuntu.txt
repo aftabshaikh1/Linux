@@ -1,0 +1,56 @@
+
+
+** To change host name in ubuntu
+sudo hostnamectl set-hostname _________
+
+++ host file>>>   /etc/hosts
+++ DNS Records>>>   /etc/resolv.conf
+
+>> To configure IP Address in NetworkManager
+nmcli con add con-name test type ethernet ifname --- ipv4.addresses X.X.X.X/24 gw4 X.X.X.X 
+nmcli con mod test ipv4.method manual connection.autoconnect yes
+
+>> To modify configured IP Address in NetworkManager
+nmcli con mod test ipv4.addresses Y.Y.Y.Y/24 ipv4.method manual connection.autoconnect yes
+nmcli con up test
+
+
+>> To modify DNS Addresses in NetworkManager
+nmcli con mod test ipv4.dns “8.8.8.8 8.8.4.4”
+
+
+>> Permitting connection for specific users
+nmcli con mod test connection.permissions user:user1,user2
+
+>> Use a Connection
+nmcli con up test
+
+
+sudo nmcli con add con-name home type ethernet ifname ens33 ipv4.addresses 11.11.11.11/24 gw4 11.11.11.1 ipv4.dns 1.1.1.1  ipv4.method manual
+
+sudo nmcli con add con-name dhcp type ethernet ifname ens33 ipv4.method auto
+
+
+
+%%  NET PLAN  (/etc/netplan)
+
+nano /etc/netplan/plantest.yaml
+
+
+ _____________________________________________________________
+|	network:
+|	    version: 2
+|	    ethernets:
+|	        enp0s3:
+|	            addresses: [192.168.1.2/24]
+|	            gateway4: 192.168.1.1
+|	            nameservers:
+|	              addresses: [8.8.8.8,8.8.4.4]
+|	            dhcp4: no
+|
+|______________________________________________________________
+
+
+sudo netplan apply
+
+
