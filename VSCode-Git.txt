@@ -1,0 +1,10 @@
+In Visual Studio Code open 'user settings': ctrl + p and type >sett press enter
+
+This will open default settings on left side and User settings on right side.
+
+Just add path to git.exe in user settings
+
+"git.path": "C:\\Users\\[WINDOWS_USER]\\AppData\\Local\\Programs\\Git\\bin\\git.exe"
+Replace [WINDOWS_USER] with your user name.
+
+Restart Visual Studio Code
