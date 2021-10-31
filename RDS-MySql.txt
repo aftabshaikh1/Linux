@@ -1,0 +1,48 @@
+Install MySQL/MariaDB Client
+Copy paste the below in the EC2 user-data field
+#!/bin/bash
+yum -y install mariadb
+
+
+
+How to Connect to RDS from EC2
+$mysql -h db1.ccr95hrnldry.us-east-1.rds.amazonaws.com -P 3306 -u aftab -p
+
+
+         If the above is giving errors, try disabling selinux by issuing this command setenforce 0
+
+
+
+
+>show databases;
+
+>create database <database-name>;
+
+>use <database-name>;
+
+
+>CREATE TABLE Students ( RollNo int, LastName varchar(255), FirstName varchar(255), City varchar(255) );
+
+
+Insert records into tables
+>INSERT INTO Students ( RollNo, LastName, FirstName, City) VALUES ( "001", "Dixit", "Vinay", "Mumbai" );
+
+INSERT INTO Students ( RollNo, LastName, FirstName, City) VALUES ( "002", "Agarwal", "Rahul", "Mumbai" );
+
+INSERT INTO Students ( RollNo, LastName, FirstName, City) VALUES ( "003", "Gupta", "Joy", "Mumbai" );
+
+INSERT INTO Students ( RollNo, LastName, FirstName, City) VALUES ( "004", "Nair", "Tejas", "Chennai" );
+
+
+
+Query
+>select * from Students;
+>select RollNo from Students WHERE (LastName="Dixit");
+>select RollNo,City from Students WHERE (City="Chennai");
+
+
+Delete Tables
+>drop tables Students;
+
+
+
